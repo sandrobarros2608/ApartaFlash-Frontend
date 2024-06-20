@@ -1,4 +1,4 @@
-export const App = () => {
+export const PaginaPrincipal = () => {
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
