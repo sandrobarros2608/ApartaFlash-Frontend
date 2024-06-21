@@ -1,13 +1,15 @@
 import { useEffect } from "react";
+import "../styles.css"
 import { FooterListaApartamento } from "./FooterListaApartamento"
 import { HeaderListaApartamento } from "./HeaderListaApartamento"
 import { NavbarListaApartamento } from "./NavbarListaApartamento"
 import { ListaApartamentosTarjeta } from "./ListaApartamentosTarjeta";
 import { useListaApartamento } from "../hooks/useListaApartamentos";
+import { ListaApartamentoApartar } from "./ListaApartamentoApartar";
 
 export const ListaApartamentos = () => {
 
-    const { apto, handlerTraerAptos } = useListaApartamento();
+    const { apto, activarModal, handlerTraerAptos, handlerAgendarApartamento } = useListaApartamento();
 
     useEffect(() => {
         handlerTraerAptos();
@@ -19,11 +21,30 @@ export const ListaApartamentos = () => {
 
             <HeaderListaApartamento />
 
+            {!activarModal || <div className="abrir-modal animacion fadeIn">
+                <div className="modal" style={{ display: "block" }} tabIndex={-1}>
+                    <div className="modal-dialog" role="document">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title">
+                                    Agendar Apartamento
+                                </h5>
+                            </div>
+                            <div className="modal-body">
+                                <ListaApartamentoApartar />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            }
+
             <section className="py-5">
                 <div className="container px-4 px-lg-5 mt-5">
                     <div className="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                         {apto.map((tarjeta) => (
-                            <ListaApartamentosTarjeta key={tarjeta.id} nombre={tarjeta.nombre} descripcion={tarjeta.descripcion} />
+                            <ListaApartamentosTarjeta key={tarjeta.id} nombre={tarjeta.nombre} descripcion={tarjeta.descripcion} handlerAgendarApartamento={handlerAgendarApartamento} />
                         ))}
                     </div>
                 </div>

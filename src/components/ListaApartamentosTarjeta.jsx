@@ -1,4 +1,9 @@
-export const ListaApartamentosTarjeta = ({nombre, descripcion}) => {
+export const ListaApartamentosTarjeta = ({nombre, descripcion, handlerAgendarApartamento}) => {
+
+    const onAgendarApartamento = () => {
+        handlerAgendarApartamento();
+    }
+
     return (
         <>
             <div className="col mb-5">
@@ -16,7 +21,7 @@ export const ListaApartamentosTarjeta = ({nombre, descripcion}) => {
                     </div>
 
                     <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div className="text-center"><button className="btn btn-dark regular-button">Apartar</button></div>
+                        <div className="text-center"><button className="btn btn-dark regular-button" onClick={onAgendarApartamento}>Apartar</button></div>
                     </div>
                 </div>
             </div>
